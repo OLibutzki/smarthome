@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.eclipse.smarthome.model.rule.runtime;
+package org.eclipse.smarthome.model.rule.internal.runtime;
 
 /**
  * This is a marker interface for Rule Engines.

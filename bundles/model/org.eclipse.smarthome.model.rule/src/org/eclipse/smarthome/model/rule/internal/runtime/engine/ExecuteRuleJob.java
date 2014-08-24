@@ -5,16 +5,16 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.eclipse.smarthome.model.rule.runtime.internal.engine;
+package org.eclipse.smarthome.model.rule.internal.runtime.engine;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.smarthome.core.scriptengine.Script;
 import org.eclipse.smarthome.core.scriptengine.ScriptEngine;
 import org.eclipse.smarthome.core.scriptengine.ScriptExecutionException;
 import org.eclipse.smarthome.model.core.ModelRepository;
+import org.eclipse.smarthome.model.rule.internal.RulesActivator;
 import org.eclipse.smarthome.model.rule.rules.Rule;
 import org.eclipse.smarthome.model.rule.rules.RuleModel;
-import org.eclipse.smarthome.model.rule.runtime.internal.RuleModelRuntimeActivator;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -44,8 +44,8 @@ public class ExecuteRuleJob implements Job {
 		String modelName = (String) context.getJobDetail().getJobDataMap().get(JOB_DATA_RULEMODEL);				
 		String ruleName = (String) context.getJobDetail().getJobDataMap().get(JOB_DATA_RULENAME);
 		
-		ModelRepository modelRepository = RuleModelRuntimeActivator.modelRepositoryTracker.getService();
-		ScriptEngine scriptEngine = RuleModelRuntimeActivator.scriptEngineTracker.getService();
+		ModelRepository modelRepository = RulesActivator.modelRepositoryTracker.getService();
+		ScriptEngine scriptEngine = RulesActivator.scriptEngineTracker.getService();
 		
 		if(modelRepository!=null && scriptEngine!=null) {
 			EObject model = modelRepository.getModel(modelName);

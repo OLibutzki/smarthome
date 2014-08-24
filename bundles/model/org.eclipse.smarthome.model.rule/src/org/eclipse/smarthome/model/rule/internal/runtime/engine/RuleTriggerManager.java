@@ -5,14 +5,14 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.eclipse.smarthome.model.rule.runtime.internal.engine;
+package org.eclipse.smarthome.model.rule.internal.runtime.engine;
 
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.CHANGE;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.COMMAND;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.SHUTDOWN;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.STARTUP;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.TIMER;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.UPDATE;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.CHANGE;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.COMMAND;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.SHUTDOWN;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.STARTUP;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.TIMER;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.UPDATE;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 

@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.eclipse.smarthome.model.script.runtime.internal.engine;
+package org.eclipse.smarthome.model.script.internal.engine.runtime;
 
 import static com.google.common.collect.Iterables.filter;
 
@@ -22,7 +22,7 @@ import org.eclipse.smarthome.core.scriptengine.Script;
 import org.eclipse.smarthome.core.scriptengine.ScriptEngine;
 import org.eclipse.smarthome.core.scriptengine.ScriptExecutionException;
 import org.eclipse.smarthome.core.scriptengine.ScriptParsingException;
-import org.eclipse.smarthome.model.script.runtime.internal.ScriptRuntimeInjectorProvider;
+import org.eclipse.smarthome.model.script.ScriptStandaloneSetup;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
@@ -56,7 +56,7 @@ public class ScriptEngineImpl implements ScriptEngine {
 
 	private XtextResourceSet getResourceSet() {
 		if (resourceSet == null) {
-			resourceSet = ScriptRuntimeInjectorProvider.getInjector().getInstance(XtextResourceSet.class);
+			resourceSet = ScriptStandaloneSetup.getInjector().getInstance(XtextResourceSet.class);
 			resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
 		}
 		return resourceSet;
@@ -78,7 +78,7 @@ public class ScriptEngineImpl implements ScriptEngine {
 	 * {@inheritDoc}
 	 */
 	public Script newScriptFromXExpression(XExpression expression) {
-		ScriptImpl script = ScriptRuntimeInjectorProvider.getInjector().getInstance(ScriptImpl.class);
+		ScriptImpl script = ScriptStandaloneSetup.getInjector().getInstance(ScriptImpl.class);
 		script.setXExpression(expression);
 		return script;
 	}

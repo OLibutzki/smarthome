@@ -5,15 +5,15 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.eclipse.smarthome.model.rule.runtime.internal.engine;
+package org.eclipse.smarthome.model.rule.internal.runtime.engine;
 
 import static org.eclipse.smarthome.core.events.EventConstants.TOPIC_PREFIX;
 import static org.eclipse.smarthome.core.events.EventConstants.TOPIC_SEPERATOR;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.CHANGE;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.COMMAND;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.SHUTDOWN;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.STARTUP;
-import static org.eclipse.smarthome.model.rule.runtime.internal.engine.RuleTriggerManager.TriggerTypes.UPDATE;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.CHANGE;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.COMMAND;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.SHUTDOWN;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.STARTUP;
+import static org.eclipse.smarthome.model.rule.internal.runtime.engine.RuleTriggerManager.TriggerTypes.UPDATE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,11 +35,11 @@ import org.eclipse.smarthome.core.types.EventType;
 import org.eclipse.smarthome.core.types.State;
 import org.eclipse.smarthome.model.core.ModelRepository;
 import org.eclipse.smarthome.model.core.ModelRepositoryChangeListener;
+import org.eclipse.smarthome.model.rule.RulesStandaloneSetup;
+import org.eclipse.smarthome.model.rule.internal.runtime.RuleEngine;
 import org.eclipse.smarthome.model.rule.jvmmodel.RulesJvmModelInferrer;
 import org.eclipse.smarthome.model.rule.rules.Rule;
 import org.eclipse.smarthome.model.rule.rules.RuleModel;
-import org.eclipse.smarthome.model.rule.runtime.RuleEngine;
-import org.eclipse.smarthome.model.rule.runtime.internal.RuleRuntimeInjectorProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
@@ -73,13 +73,14 @@ public class RuleEngineImpl implements EventHandler, ItemRegistryChangeListener,
 		private Injector injector;
 						
 		public void activate() {
-			injector = RuleRuntimeInjectorProvider.getInjector();
-			triggerManager = injector.getInstance(RuleTriggerManager.class);
-
 			if(!isEnabled()) {
 				logger.info("Rule engine is disabled.");
 				return;
 			}
+			injector = RulesStandaloneSetup.getInjector();
+			triggerManager = injector.getInstance(RuleTriggerManager.class);
+
+
 			
 			logger.debug("Started rule engine");		
 			

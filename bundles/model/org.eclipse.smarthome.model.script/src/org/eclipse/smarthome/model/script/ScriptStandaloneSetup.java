@@ -7,7 +7,7 @@
  */
 package org.eclipse.smarthome.model.script;
 
-import org.eclipse.smarthome.model.script.ScriptStandaloneSetupGenerated;
+import com.google.inject.Injector;
 
 /**
  * Initialization support for running Xtext languages 
@@ -15,8 +15,16 @@ import org.eclipse.smarthome.model.script.ScriptStandaloneSetupGenerated;
  */
 public class ScriptStandaloneSetup extends ScriptStandaloneSetupGenerated{
 
+	private static Injector injector;
+	
 	public static void doSetup() {
-		new ScriptStandaloneSetup().createInjectorAndDoEMFRegistration();
+		if(injector==null) {
+			injector = new ScriptStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
+	}
+	
+	static public Injector getInjector() {
+		return injector;
 	}
 }
 

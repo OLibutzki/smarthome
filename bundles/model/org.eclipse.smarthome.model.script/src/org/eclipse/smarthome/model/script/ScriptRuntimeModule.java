@@ -10,6 +10,10 @@
  */
 package org.eclipse.smarthome.model.script;
 
+import org.eclipse.smarthome.core.scriptengine.Script;
+import org.eclipse.smarthome.core.scriptengine.ScriptEngine;
+import org.eclipse.smarthome.model.script.internal.engine.runtime.ScriptEngineImpl;
+import org.eclipse.smarthome.model.script.internal.engine.runtime.ScriptImpl;
 import org.eclipse.smarthome.model.script.interpreter.ScriptInterpreter;
 import org.eclipse.smarthome.model.script.scoping.ActionClassLoader;
 import org.eclipse.smarthome.model.script.scoping.ScriptImplicitlyImportedTypes;
@@ -72,6 +76,14 @@ public class ScriptRuntimeModule extends org.eclipse.smarthome.model.script.Abst
 	@Override
 	public ClassLoader bindClassLoaderToInstance() {
 		return new ActionClassLoader(super.bindClassLoaderToInstance());
+	}
+	
+	public Class<? extends ScriptEngine> bindScriptEngine() {
+		return ScriptEngineImpl.class;
+	}
+	
+	public Class<? extends Script> bindScript() {
+		return ScriptImpl.class;
 	}
 	
 }
